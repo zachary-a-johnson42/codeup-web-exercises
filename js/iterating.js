@@ -74,6 +74,5 @@
         console.log("Last index is " + lastIndex)
         return console.log("Using the last function, the last item is " + array[lastIndex]);
     }
-
     last(names);
 })();
