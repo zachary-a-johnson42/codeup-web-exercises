@@ -7,6 +7,10 @@
 <body>
 
 <h1 id="main-header">Hello World!</h1>
+<button id="header-button">Change Header</button>
+<button id="item1-button">Change Item 1</button>
+<button id="item2-button">Change Item 2</button>
+<button id="'ipsum">Change the lorem ipsum</button>
 <ul>
   <li data-dbid="1">Item 1</li>
   <li data-dbid="2">Item 2</li>
@@ -57,7 +61,7 @@
     }
 
     // TODO: Set text color of li with dbid = 1 to blue
-    let liBlue = document.querySelector("li", "dbid = 1")
+    let liBlue = document.querySelector("li[data-dbid = '1']")
     console.log(liBlue);
     liBlue.style.color = "blue";
     // TODO: Uncomment the next line and get all elements with class name sub-paragraph
@@ -65,6 +69,44 @@
     console.log(subParagraphs);
     // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
     subParagraphs[0].innerHTML = "Mission Accomplished!"
+
+    //Set up Buttons
+    let headerBtn = document.getElementById("header-button");
+    // Set up function for what to do when event happens
+    //NOTE: IT SEEMS LIKE YOU HAVE TO HAVE THE FUNCTION BEFORE THE LISTENER, SEEMS TO BE A HOISTING THING?
+    let changeHeader = function(event) {
+      mainHeader.innerHTML = "WHOA, the button changed ya!"
+    }
+    //Set up listener, maybe these should be at the very bottom??
+      headerBtn.addEventListener("click",changeHeader);
+
+
+
+
+    let itemOneBtn = document.getElementById("item1-button");
+    let changeOneBtn = function(event) {
+      liBlue.innerHTML = "Now I'm red, and my text changed!"
+      liBlue.style.color = "red"
+    }
+
+    itemOneBtn.addEventListener("click", changeOneBtn)
+
+    let itemTwoBtn = document.getElementById("item2-button");
+    let liTwo = document.querySelector("li[data-dbid = '2']")
+    let changeTwoBtn = function(event){
+      liTwo.innerHTML = "Now we're getting the hang of it"
+      liTwo.style.color = "aqua"
+    }
+
+    itemTwoBtn.addEventListener("click", changeTwoBtn);
+
+
+    let ipsumBtn = document.getElementById("'ipsum");
+    let changeIpsum = function(event) {
+      subParagraphs[0].innerHTML = "Mission SUPER ACCOMPLISHED USING THE POWER OF THE DOM"
+      subParagraphs[0].style.color = "#ffd700"
+    }
+    ipsumBtn.addEventListener("click", changeIpsum)
   })();
 </script>
 </body>
