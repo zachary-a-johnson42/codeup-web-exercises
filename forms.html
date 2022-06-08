@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register With Us</title>
+</head>
+<body>
+    <h1>Register With Us</h1>
+    <form method="post" action="https://request-inspector.glitch.me/">
+        <label for="email">
+            Please enter your email<input name="email" id="email" type="text" placeholder="Please enter your email">
+        </label>
+        <label for="password">
+            <input name="password" id="password" type="password" placeholder="Please enter desired password">
+        </label>
+        <label for="bio">
+        <textarea id="bio" name="bio" placeholder="Please write a brief description of yourself"></textarea>
+        </label>
+
+        <p>How did you hear about us?</p>
+        <!--To select multiple answers with radio buttons, the name has to be different for each one.-->
+        <!--Maybe use checkboxes instead of radio if you want to be able to have multiple selections-->
+        <label for="billboard">
+            Billboard<input name="billboard" id="billboard" type="radio" value="billboard">
+        </label>
+        <label for="radio-ad">
+            Radio<input name="radio" id="radio-ad" type="radio" value="radio">
+        </label>
+        <label for="internet">
+            Internet<input name="internet" id="internet" type="radio" value="internet">
+        </label>
+        <label for="other">
+            Other<input name="other" id="other" type="radio" value="other">
+        </label>
+
+        <label for="select">
+            What Browser are you using?
+            <select name="browser" id="select">
+
+                <option name="chrome" id="chrome" value="chrome">Chrome</option>
+                <option name="firefox" id="firefox" value="firefox">Firefox</option>
+                <option name="edge" id="edge" value="edge">Edge</option>
+            </select>
+        </label>
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
