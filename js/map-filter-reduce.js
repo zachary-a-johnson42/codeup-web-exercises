@@ -63,17 +63,27 @@ let usersAverageExperience = usersTotalExperience / users.length;
 //return longest email out of all users
 //SKIP FOR NOW, ASK CODY OR KEN FOR HELP WITH LOGIC
 
-let longestEmail = users.reduce((accum, current) =>{
+let longestEmail = users.reduce((longest, current) =>{
     // current.email.length returns the longest number, need to return the actual string value
     //set a variable to catch the longest email?
-    console.log(`Trying to get all user emails.. ${current.email.length}`);
+    //console.log(`Trying to get all user emails.. ${current.email.length}`);
+    //console.log(current.email)
 
-    }, [])
+    // I need to find a way to compare the current value to the immediately proceeding 'current' to only keep the larger
+    // i.e. ryan = 15 to start, luis is also 15, skip. zach is also 15, skip. fernando is 19, replace ryan with fernando
+    // if (whatever is accumulated's length is > the current's length) Replace whatever is accumulated with the current
+        if(current.email.length > longest.length) {
+            console.log(current.email)
+            return current.email
+        }
+        return longest
+    }, '')
 
 //return a string of ALL the users name
 
 let usernameString = users.reduce((accum, current) =>{
-    console.log(`The username string is currently... ${current.name}`);
-    current = `User : ${current.name} `
-    return accum + current;
+    //console.log(`The username string is currently... ${current.name}`);
+    //This returns white space at the end, ask about a cleaner solution
+    current = `User:${current.name} `
+    return accum + current
 }, [])
