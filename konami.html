@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Konami Cheat Code!</title>
+</head>
+<body>
+    <h1>Konami Cheat Code</h1>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        let codeCatch= ''
+
+        $(document).keyup(function (event){
+            codeCatch = codeCatch + event.key
+
+            if(codeCatch === 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightbaEnter'){
+                alert('You have added 30 lives!')
+                codeCatch = ''
+            }
+
+            if(codeCatch.length > 77) {
+                codeCatch = ''
+                alert('ERROR: Input incorrect. Please start again')
+            }
+        })
+
+    </script>
+
+</body>
+</html>
