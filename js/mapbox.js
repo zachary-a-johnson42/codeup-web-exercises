@@ -15,4 +15,5 @@ map.on('dblclick', (e) => {
     console.log(`User clicked at ${e.lngLat}`)
 })
 
-let favRestaraunt = new mapboxgl.Marker().setLngLat([-122.313117,47.668191]).addTo(map)
+let xianPopup = new mapboxgl.Popup().setHTML("Xi'an Noodles")
+let favRestaraunt = new mapboxgl.Marker().setLngLat([-122.313117,47.668191]).addTo(map).setPopup(xianPopup)
