@@ -15,5 +15,27 @@ map.on('dblclick', (e) => {
     console.log(`User clicked at ${e.lngLat}`)
 })
 
-let xianPopup = new mapboxgl.Popup().setHTML("Xi'an Noodles")
-let favRestaraunt = new mapboxgl.Marker().setLngLat([-122.313117,47.668191]).addTo(map).setPopup(xianPopup)
+let xianNoodles = {
+    lngLat : [-122.313117,47.668191],
+    name : 'Xi\'an Noodles',
+    description : 'One of a kind noodles!'
+}
+
+let ivarsSalmon = {
+    lngLat : [-122.323832, 47.653525],
+    name: 'Ivar\'s Salmon House',
+    description: 'The best fish and chips in town!'
+}
+
+let dicksDriveIn = {
+    lngLat : [-122.321076, 47.619327],
+    name: 'Dick\'s Drive-In',
+    description: 'A Seattle classic, cheapest burgers with the best taste. Everyone loves a bag of Dick\'s!'
+}
+
+let allMarkers = [xianNoodles, ivarsSalmon, dicksDriveIn]
+
+allMarkers.forEach( (current)=>{
+    let popup = new mapboxgl.Popup().setHTML('<h1>' + current.name + '</h1>' + '<p>' + current.description + '</p>')
+    new mapboxgl.Marker().setLngLat(current.lngLat).addTo(map).setPopup(popup)
+})
