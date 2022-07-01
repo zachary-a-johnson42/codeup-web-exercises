@@ -46,6 +46,8 @@ let zoom5 = ()=> map.zoomTo(5)
 let zoom10 = () => map.zoomTo(10)
 let zoom15 = () => map.zoomTo(15)
 
+//When select options is changed, activate zoom functions depending on user choice
+
 let zoomSelect = document.getElementById('zoom-select')
 
 zoomSelect.addEventListener('change',function(){
@@ -56,3 +58,16 @@ zoomSelect.addEventListener('change',function(){
     if (zoomSelect.value === '3') {zoom15();}
 });
 
+//When user submits address, use geocode to center map, and add a marker
+
+let addressData = document.getElementById('address-input')
+let addressSubmit = document.getElementById('address-submit')
+
+addressSubmit.addEventListener("click", ()=>{
+    //Get geocode results
+    let userAddress = geocode(addressData.value, mapBoxToken)
+        .then(results =>{
+            map.setCenter(results)
+            new mapboxgl.Marker().setLngLat(results).addTo(map)
+        })
+})
