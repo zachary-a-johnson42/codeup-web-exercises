@@ -39,3 +39,20 @@ allMarkers.forEach( (current)=>{
     let popup = new mapboxgl.Popup().setHTML('<h1>' + current.name + '</h1>' + '<p>' + current.description + '</p>')
     new mapboxgl.Marker().setLngLat(current.lngLat).addTo(map).setPopup(popup)
 })
+
+//Setting map zoom functions
+
+let zoom5 = ()=> map.zoomTo(5)
+let zoom10 = () => map.zoomTo(10)
+let zoom15 = () => map.zoomTo(15)
+
+let zoomSelect = document.getElementById('zoom-select')
+
+zoomSelect.addEventListener('change',function(){
+    console.log('event change')
+    console.log(zoomSelect.value)
+    if (zoomSelect.value === '1') {zoom10();}
+    if (zoomSelect.value === '2') {zoom5();}
+    if (zoomSelect.value === '3') {zoom15();}
+});
+

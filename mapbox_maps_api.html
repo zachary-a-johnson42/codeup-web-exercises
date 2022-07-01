@@ -10,7 +10,18 @@
     </head>
 
     <body>
-        <div id="map" style="width: 400px; height: 400px;"></div>
+
+        <div id="map" style="width: 80%; height: 600px;"></div>
+
+        <form>
+            <label for="zoom-select"></label>
+            <select id="zoom-select">
+                <option selected id="normal-zoom" value="1">Default</option>
+                <option id="zoom-out" value="2">Zoom Out</option>
+                <option id="zoom-in" value="3">Zoom In</option>
+            </select>
+        </form>
+
         <script src="js/mapbox-geocoder-utils.js"></script>
         <script src="js/mapbox.js"></script>
     </body>
