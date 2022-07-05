@@ -1,0 +1,9 @@
+#weather-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.weather-card {
+    background: #0fb784;
+}
