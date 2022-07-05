@@ -1,24 +1,31 @@
 'use strict'
+//setting token
+mapboxgl.accessToken = mapBoxToken;
 
-//Example API Call for OpenWeather
+//setting lng & lat for changing
 
-//pro.openweathermap.org/data/2.5/weather?q=London,uk&APPID=d30e65317cceb4aa2e55fe950b727ac6
+let long;
+let lati;
 
-//For weather?q = long and lat from Mapbox? APPID= OpenWeatherKey
+//Creating map, attaching it to div with map ID
+const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [-122.330062, 47.603832], // starting position [lng, lat]
+    zoom: 10 // starting zoom
+});
 
-//Get the current weather..
-// current.temp
-//current.weather[0].main?
+map.on('dblclick', (e) => {
+    let location = e.lngLat
+    long = location.lng;
+    lati = location.lat;
+    getWeather(lati, long)
+})
 
-//Next 4 days forecast..
-// daily[0] = next day and then [1],[2],[3] etc
-// daily.temp.min & daily.temp.max
-// daily.weather[0].main
-
-let baseURL = 'https://api.openweathermap.org/data/2.5/onecall?'
-let lati= 47.653525
-let long = -122.323832
 let weatherDiv = document.getElementById('weather-cards');
+
+
+
 
 
 function getWeather(lat, lon) {
@@ -27,24 +34,22 @@ function getWeather(lat, lon) {
         .then(data => {
             console.log(data)
             //Need to use time to get dates.
+            let today = new Date();
+            console.log(today)
             let html = '<div class="weather-card">'
-            html += '<h1> Currently: ' +  data.current.temp + '</h1>'
-            html += '<p> Expected Forecast: ' + data.current.weather[0].main + '</p>'
+            html += '<div><p>' + today + '</p></div>'
+            html += '<div><h1> Currently: ' +  data.current.temp + '</h1></div>'
+            html += '<div><p> Expected Forecast: ' + data.current.weather[0].main + '</p></div>'
             html += '</div>'
-                for (let i = 0; i < 4; i++) {
+
+            for (let i = 0; i < 3; i++) {
                     //need to figure out how to update dates..
                         html += '<div class="weather-card">'
-                        html += '<h3> High:' + data.daily[0].temp.max + '</h3>'
-                        html += '<h3> Low:' + data.daily[0].temp.min +'</h3>'
-                        html += '<p> Expected Forecast:' + data.daily[0].weather[0].main + '</p>'
+                        html += '<div><h3>' + data.daily[i].temp.max + '/' + data.daily[i].temp.min + '</h3></div>'
+                        html += '<div><p> Expected Forecast:' + data.daily[i].weather[0].main + '</p></div>'
                         html += '</div>'
-                }
-            console.log('tomorrow max temp.. ' + data.daily[0].temp.max)
-            console.log('tomorrow min temp.. ' + data.daily[0].temp.min)
-            console.log('weather for tomorrow is.. ' + data.daily[0].weather[0].main)
-            console.log('weather description for tomorrow is.. ' + data.daily[0].weather[0].description)
-
-                weatherDiv.innerHTML = html;
+            }
+            weatherDiv.innerHTML = html;
         })
 }
 
