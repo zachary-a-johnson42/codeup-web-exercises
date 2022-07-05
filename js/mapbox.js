@@ -35,7 +35,7 @@ let dicksDriveIn = {
 
 let allMarkers = [xianNoodles, ivarsSalmon, dicksDriveIn]
 
-allMarkers.forEach( (current)=>{
+let onStartMarkers = allMarkers.forEach( (current)=>{
     let popup = new mapboxgl.Popup().setHTML('<h1>' + current.name + '</h1>' + '<p>' + current.description + '</p>')
     new mapboxgl.Marker().setLngLat(current.lngLat).addTo(map).setPopup(popup)
 })
@@ -62,10 +62,10 @@ zoomSelect.addEventListener('change',function(){
 
 let addressData = document.getElementById('address-input')
 let addressSubmit = document.getElementById('address-submit')
+let removeMarker = document.getElementById('clear-markers')
 
 addressSubmit.addEventListener("click", ()=>{
-    //Get geocode results
-    let userAddress = geocode(addressData.value, mapBoxToken)
+    geocode(addressData.value, mapBoxToken)
         .then(results =>{
             map.setCenter(results)
             new mapboxgl.Marker().setLngLat(results).addTo(map)
