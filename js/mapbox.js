@@ -71,3 +71,11 @@ addressSubmit.addEventListener("click", ()=>{
             new mapboxgl.Marker().setLngLat(results).addTo(map)
         })
 })
+
+addressSubmit.addEventListener("click", ()=>{
+    geocode(addressData.value, mapBoxToken)
+        .then(results =>{
+            map.setCenter(results)
+            new mapboxgl.Marker().setLngLat(results).addTo(map)
+        })
+})
