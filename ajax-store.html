@@ -31,15 +31,30 @@
     //             its contents and fields
     //       HINT: You will want to target #insertProducts for your new HTML elements
 
-    $.get("data/inventory.json").done(function(data){
-      for (const object of data) {
-         $('#insertProducts').append("<td>" + object.title + "</td>")
-         $('#insertProducts').append("<td>" + object.quantity + "</td>")
-         $('#insertProducts').append("<td>" + object.price + "</td>")
-         $('#insertProducts').append("<td>" + object.categories + "</td>")
-        $('#insertProducts').append("<tr></tr>")
-      }
+    // JSON WAY TO DO IT!
+
+    // $.get("data/inventory.json").done(function(data){
+    //   for (const object of data) {
+    //      $('#insertProducts').append("<td>" + object.title + "</td>")
+    //      $('#insertProducts').append("<td>" + object.quantity + "</td>")
+    //      $('#insertProducts').append("<td>" + object.price + "</td>")
+    //      $('#insertProducts').append("<td>" + object.categories + "</td>")
+    //     $('#insertProducts').append("<tr></tr>")
+    //   }
+    // })
+
+    //Vanilla JS
+    let insertProducts = document.getElementById("insertProducts");
+
+    fetch("data/inventory.json").then((result)=> {
+      result.json().then(objects =>{
+        for (let i = 0; i < objects.length; i++) {
+            insertProducts.innerHTML += "<td>" + objects[i].title + "</td>" + "<td>" + objects[i].quantity + "</td>" + "<td>" + objects[i].price + "</td>" + "<td>" + objects[i].categories + "</td>"
+        }
+        })
     })
+
+
 
   })();
 </script>
